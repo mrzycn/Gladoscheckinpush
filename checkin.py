@@ -2,8 +2,19 @@ import requests
 import json
 import os
 
-from pypushdeer import PushDeer
-
+# from pypushdeer import PushDeer #
+import requests
+ 
+def send_wechat(token, title, msg):
+    token = token
+    title = title
+    content = msg
+    template = 'html'
+    url = f"https://www.pushplus.plus/send?token={token}&title={title}&content={content}&template={template}"
+    print(url)
+    r = requests.get(url=url)
+    print(r.text)
+    
 # -------------------------------------------------------------------------------------------
 # github workflows
 # -------------------------------------------------------------------------------------------
@@ -95,3 +106,4 @@ if __name__ == '__main__':
     else:
         pushdeer = PushDeer(pushkey=sckey) 
         pushdeer.send_text(title, desp=context)
+
